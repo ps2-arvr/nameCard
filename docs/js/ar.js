@@ -1,3 +1,5 @@
+var clock = new THREE.Clock();
+
 class ARObject{
 	constructor(scene, camera){
 		this.scene = scene;
@@ -63,6 +65,6 @@ class ARObject{
 	}
 
 	update(){
-		this.arObject.update(dt);
+		this.arObject.update(clock.getDelta());
 	}
 }
