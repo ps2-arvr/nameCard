@@ -41,7 +41,7 @@ function onResize(){
 function renderScene() { 					// レンダリング関数
 	requestAnimationFrame(renderScene);			// ループを要求
 	if(ar.source.ready === false)    { return; }		// メディアソースの準備ができていなければ抜ける
-	ar.context.update(source.domElement);			// ARToolkitのコンテキストを更新
+	ar.context.update(ar.source.domElement);		// ARToolkitのコンテキストを更新
 	ar.update();
   	renderer.render(scene, camera);				// レンダリング実施
 }

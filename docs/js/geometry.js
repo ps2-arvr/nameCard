@@ -37,12 +37,13 @@ class Geometry {
 class Rocket extends Geometry{
 	
 	createObject(){
+		var geo, mat;
 		var rocketMesh;
 		// json形式のモデルを読み込むローダ
 		var loader = new THREE.JSONLoader();
 		// モデルを読み込む
 		loader.load("./model/rocketX.json", function(geo, mat) {
-		mat = new THREE.MeshPhongMaterial({map:THREE.ImageUtils.loadTexture("./model/rocketX.png")});
+			mat = new THREE.MeshPhongMaterial({map:THREE.ImageUtils.loadTexture("./model/rocketX.png")});
 			// メッシュ化
 			rocketMesh = new THREE.Mesh(geo, mat);
 			// メッシュの名前（後でピッキングで使う）
