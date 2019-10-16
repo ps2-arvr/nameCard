@@ -11,14 +11,16 @@ class ARObject{
 		//===================================================================
 		// arToolkitSource（マーカトラッキングするメディアソース）
 		//===================================================================
-		this.source = new THREEx.ArToolkitSource({             // arToolkitSourceの作成
-			sourceType: "webcam",                         // Webカメラ設定
-		});
-
-		this.source.init(function onReady() {                      // ソースを初期化し、準備ができたら
-  			onResize();                                        // リサイズ処理
+		this.source = new THREEx.ArToolkitSource({		// arToolkitSourceの作成
+			sourceType: "webcam",				// Webカメラ設定
 		});
 		
+		this.source.init(function onReady() {			// ソースを初期化し、準備ができたら
+			ARObject.onResize();				// リサイズ処理
+		});
+		window.addEventListener("resize", function() {		// ウィンドウがリサイズされたら
+			ARObject.onResize();				// リサイズ処理
+		});	
 
 		//===================================================================
 		// arToolkitContext（カメラパラメータ、マーカ検出設定）
@@ -35,21 +37,6 @@ class ARObject{
 		this.context.init(function onCompleted(){		  			// コンテクスト初期化が完了したら
 			this.camera.projectionMatrix.copy(this.context.getProjectionMatrix());  // 射影行列をコピー
 		});
-		
-		window.addEventListener("resize", function() {		// ウィンドウがリサイズされたら
-			onResize();                                     // リサイズ処理
-		});
-
-		var source = this.source;
-		var context = this.context;
-
-		function onResize(){
- 			source.onResizeElement();                           // トラッキングソースをリサイズ
-			source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
-  			if(context.arController !== null){                  // arControllerがnullでなければ
-    				source.copyElementSizeTo(context.arController.canvas);  // それも同じサイズに
-  			} 
-		}
 
 		//===================================================================
 		// ArMarkerControls（マーカと、マーカ検出時の表示オブジェクト）
@@ -77,8 +64,18 @@ class ARObject{
 		this.arObject = Geometry.getInstance(dictionaryName);
 		this.arObject.setMarkerObject(marker);
 		this.arObject.createObject();
+
+		var source = this.source;
+		var context = this.context;
 	}
 
+	static onResize(){
+		source.onResizeElement();                           // トラッキングソースをリサイズ
+		source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
+  		if(context.arController !== null){                  // arControllerがnullでなければ
+  	 		source.copyElementSizeTo(context.arController.canvas);  // それも同じサイズに
+  		} 
+	}
 
 	update(){
 		this.arObject.update(clock.getDelta());
