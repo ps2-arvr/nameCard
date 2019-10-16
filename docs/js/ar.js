@@ -6,50 +6,50 @@ class AR{
 
 	init(){
 		//===================================================================
-		// arToolkitSourceiƒ}[ƒJƒgƒ‰ƒbƒLƒ“ƒO‚·‚éƒƒfƒBƒAƒ\[ƒXj
+		// arToolkitSourceï¼ˆãƒãƒ¼ã‚«ãƒˆãƒ©ãƒƒã‚­ãƒ³ã‚°ã™ã‚‹ãƒ¡ãƒ‡ã‚£ã‚¢ã‚½ãƒ¼ã‚¹ï¼‰
 		//===================================================================
-		var source = new THREEx.ArToolkitSource({             // arToolkitSource‚Ìì¬
-			sourceType: "webcam",                         // WebƒJƒƒ‰İ’è
+		var source = new THREEx.ArToolkitSource({             // arToolkitSourceã®ä½œæˆ
+			sourceType: "webcam",                         // Webã‚«ãƒ¡ãƒ©è¨­å®š
 		});
 
-		source.init(function onReady() {                      // ƒ\[ƒX‚ğ‰Šú‰»‚µA€”õ‚ª‚Å‚«‚½‚ç
-  			onResize();                                   // ƒŠƒTƒCƒYˆ—
+		source.init(function onReady() {                      // ã‚½ãƒ¼ã‚¹ã‚’åˆæœŸåŒ–ã—ã€æº–å‚™ãŒã§ããŸã‚‰
+  			onResize();                                   // ãƒªã‚µã‚¤ã‚ºå‡¦ç†
 		});
 
 		//===================================================================
-		// arToolkitContextiƒJƒƒ‰ƒpƒ‰ƒ[ƒ^Aƒ}[ƒJŒŸoİ’èj
+		// arToolkitContextï¼ˆã‚«ãƒ¡ãƒ©ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ãƒãƒ¼ã‚«æ¤œå‡ºè¨­å®šï¼‰
 		//===================================================================
-		this.context = new THREEx.ArToolkitContext({							 // arToolkitContext‚Ìì¬
-  			debug: false,                                    // ƒfƒoƒbƒO—pƒLƒƒƒ“ƒoƒX•\¦iƒfƒtƒHƒ‹ƒgfalsej
-  			cameraParametersUrl: "./data/camera_para.dat",   // ƒJƒƒ‰ƒpƒ‰ƒ[ƒ^ƒtƒ@ƒCƒ‹
-  			detectionMode: "mono",                           // ŒŸoƒ‚[ƒhicolor/color_and_matrix/mono/mono_and_matrixj
-  			imageSmoothingEnabled: true,                     // ‰æ‘œ‚ğƒXƒ€[ƒWƒ“ƒO‚·‚é‚©iƒfƒtƒHƒ‹ƒgfalsej
-  			maxDetectionRate: 60,                            // ƒ}[ƒJ‚ÌŒŸoƒŒ[ƒgiƒfƒtƒHƒ‹ƒg60j
-  			canvasWidth: source.parameters.sourceWidth,      // ƒ}[ƒJŒŸo—p‰æ‘œ‚Ì•iƒfƒtƒHƒ‹ƒg640j
-  			canvasHeight: source.parameters.sourceHeight,    // ƒ}[ƒJŒŸo—p‰æ‘œ‚Ì‚‚³iƒfƒtƒHƒ‹ƒg480j
+		this.context = new THREEx.ArToolkitContext({							 // arToolkitContextã®ä½œæˆ
+  			debug: false,                                    // ãƒ‡ãƒãƒƒã‚°ç”¨ã‚­ãƒ£ãƒ³ãƒã‚¹è¡¨ç¤ºï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆfalseï¼‰
+  			cameraParametersUrl: "./data/camera_para.dat",   // ã‚«ãƒ¡ãƒ©ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«
+  			detectionMode: "mono",                           // æ¤œå‡ºãƒ¢ãƒ¼ãƒ‰ï¼ˆcolor/color_and_matrix/mono/mono_and_matrixï¼‰
+  			imageSmoothingEnabled: true,                     // ç”»åƒã‚’ã‚¹ãƒ ãƒ¼ã‚¸ãƒ³ã‚°ã™ã‚‹ã‹ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆfalseï¼‰
+  			maxDetectionRate: 60,                            // ãƒãƒ¼ã‚«ã®æ¤œå‡ºãƒ¬ãƒ¼ãƒˆï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ60ï¼‰
+  			canvasWidth: source.parameters.sourceWidth,      // ãƒãƒ¼ã‚«æ¤œå‡ºç”¨ç”»åƒã®å¹…ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ640ï¼‰
+  			canvasHeight: source.parameters.sourceHeight,    // ãƒãƒ¼ã‚«æ¤œå‡ºç”¨ç”»åƒã®é«˜ã•ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ480ï¼‰
 		});
-		this.context.init(function onCompleted(){		  			// ƒRƒ“ƒeƒNƒXƒg‰Šú‰»‚ªŠ®—¹‚µ‚½‚ç
-			this.camera.projectionMatrix.copy(this.context.getProjectionMatrix());  // Ë‰es—ñ‚ğƒRƒs[
+		this.context.init(function onCompleted(){		  			// ã‚³ãƒ³ãƒ†ã‚¯ã‚¹ãƒˆåˆæœŸåŒ–ãŒå®Œäº†ã—ãŸã‚‰
+			this.camera.projectionMatrix.copy(this.context.getProjectionMatrix());  // å°„å½±è¡Œåˆ—ã‚’ã‚³ãƒ”ãƒ¼
 		});
 		
-		window.addEventListener("resize", function() {		// ƒEƒBƒ“ƒhƒE‚ªƒŠƒTƒCƒY‚³‚ê‚½‚ç
-  			onResize();                                     // ƒŠƒTƒCƒYˆ—
+		window.addEventListener("resize", function() {		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒãƒªã‚µã‚¤ã‚ºã•ã‚ŒãŸã‚‰
+  			onResize();                                     // ãƒªã‚µã‚¤ã‚ºå‡¦ç†
 		});
 		
 		function onResize(){
-  			source.onResizeElement();                           // ƒgƒ‰ƒbƒLƒ“ƒOƒ\[ƒX‚ğƒŠƒTƒCƒY
-  			source.copyElementSizeTo(renderer.domElement);      // ƒŒƒ“ƒ_ƒ‰‚à“¯‚¶ƒTƒCƒY‚É
-  			if(context.arController !== null){                  // arController‚ªnull‚Å‚È‚¯‚ê‚Î
-    				source.copyElementSizeTo(context.arController.canvas);  // ‚»‚ê‚à“¯‚¶ƒTƒCƒY‚É
+  			source.onResizeElement();                           // ãƒˆãƒ©ãƒƒã‚­ãƒ³ã‚°ã‚½ãƒ¼ã‚¹ã‚’ãƒªã‚µã‚¤ã‚º
+  			source.copyElementSizeTo(renderer.domElement);      // ãƒ¬ãƒ³ãƒ€ãƒ©ã‚‚åŒã˜ã‚µã‚¤ã‚ºã«
+  			if(context.arController !== null){                  // arControllerãŒnullã§ãªã‘ã‚Œã°
+    				source.copyElementSizeTo(context.arController.canvas);  // ãã‚Œã‚‚åŒã˜ã‚µã‚¤ã‚ºã«
   			} 
 		}
 
 		//===================================================================
-		// ArMarkerControlsiƒ}[ƒJ‚ÆAƒ}[ƒJŒŸo‚Ì•\¦ƒIƒuƒWƒFƒNƒgj
+		// ArMarkerControlsï¼ˆãƒãƒ¼ã‚«ã¨ã€ãƒãƒ¼ã‚«æ¤œå‡ºæ™‚ã®è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‰
 		//===================================================================
 		var marker = new THREE.Group();
 
-		//ƒpƒ‰ƒ[ƒ^‚©‚ç«‘ƒf[ƒ^–¼‚ğæ“¾
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰è¾æ›¸ãƒ‡ãƒ¼ã‚¿åã‚’å–å¾—
 		var string = new String();
 		var dictionaryName = string.getValue('marker_name');
 
@@ -60,9 +60,9 @@ class AR{
 
 		var dictionaryData = "./data/" + dictionaryName + ".patt";
 
-		var controls = new THREEx.ArMarkerControls(context, marker, {    // ƒ}[ƒJ‚ğ“o˜^
-  			type: "pattern",					 // ƒ}[ƒJ‚Ìƒ^ƒCƒv
-  			patternUrl: dictionaryData,				 // ƒ}[ƒJƒtƒ@ƒCƒ‹
+		var controls = new THREEx.ArMarkerControls(context, marker, {    // ãƒãƒ¼ã‚«ã‚’ç™»éŒ²
+  			type: "pattern",					 // ãƒãƒ¼ã‚«ã®ã‚¿ã‚¤ãƒ—
+  			patternUrl: dictionaryData,				 // ãƒãƒ¼ã‚«ãƒ•ã‚¡ã‚¤ãƒ«
 		});
 
 		this.scene.add(marker);
@@ -75,7 +75,7 @@ class AR{
 
 	}
 
-	function update(){
+	update(){
 		this.arObject.update(dt);
 	}
 }

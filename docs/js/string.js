@@ -14,19 +14,19 @@ String.prototype = {
 
 function getQueryString(){
 	if (1 < document.location.search.length) {
-		// Å‰‚Ì1•¶Žš (?‹L†) ‚ðœ‚¢‚½•¶Žš—ñ‚ðŽæ“¾‚·‚é
+		// æœ€åˆã®1æ–‡å­— (?è¨˜å·) ã‚’é™¤ã„ãŸæ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
 		var query = document.location.search.substring(1);
-		// ƒNƒGƒŠ‚Ì‹æØ‚è‹L† (&) ‚Å•¶Žš—ñ‚ð”z—ñ‚É•ªŠ„‚·‚é
+		// ã‚¯ã‚¨ãƒªã®åŒºåˆ‡ã‚Šè¨˜å· (&) ã§æ–‡å­—åˆ—ã‚’é…åˆ—ã«åˆ†å‰²ã™ã‚‹
 		var parameters = query.split('&');
 		var result = new Object();
 
 		for (var i = 0; i < parameters.length; i++) {
-			// ƒpƒ‰ƒ[ƒ^–¼‚Æƒpƒ‰ƒ[ƒ^’l‚É•ªŠ„‚·‚é
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åã¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€¤ã«åˆ†å‰²ã™ã‚‹
 			var element = parameters[i].split('=');
 
 			var paramName = decodeURIComponent(element[0]);
 			var paramValue = decodeURIComponent(element[1]);
-			// ƒpƒ‰ƒ[ƒ^–¼‚ðƒL[‚Æ‚µ‚Ä˜A‘z”z—ñ‚É’Ç‰Á‚·‚é
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åã‚’ã‚­ãƒ¼ã¨ã—ã¦é€£æƒ³é…åˆ—ã«è¿½åŠ ã™ã‚‹
 			result[paramName] = paramValue;
 		}
 		return result;

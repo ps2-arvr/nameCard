@@ -1,38 +1,38 @@
 //===================================================================
-// three.js ‚ÌŠeíİ’è
+// three.js ã®å„ç¨®è¨­å®š
 //===================================================================
-var scene = new THREE.Scene();                        // ƒV[ƒ“‚Ìì¬
-var renderer = new THREE.WebGLRenderer({              // ƒŒƒ“ƒ_ƒ‰‚Ìì¬
-  antialias: true,                                    // ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX—LŒø
-  alpha: true,                                        // canvas‚É“§–¾“xƒoƒbƒtƒ@‚ğ‚½‚¹‚é
+var scene = new THREE.Scene();                        // ã‚·ãƒ¼ãƒ³ã®ä½œæˆ
+var renderer = new THREE.WebGLRenderer({              // ãƒ¬ãƒ³ãƒ€ãƒ©ã®ä½œæˆ
+  antialias: true,                                    // ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹æœ‰åŠ¹
+  alpha: true,                                        // canvasã«é€æ˜åº¦ãƒãƒƒãƒ•ã‚¡ã‚’æŒãŸã›ã‚‹
 });
-renderer.setClearColor(new THREE.Color("black"), 0);  // ƒŒƒ“ƒ_ƒ‰‚Ì”wŒiF
-renderer.setSize(640, 480);                           // ƒŒƒ“ƒ_ƒ‰‚ÌƒTƒCƒY
-renderer.domElement.style.position = "absolute";      // ƒŒƒ“ƒ_ƒ‰‚ÌˆÊ’u‚Íâ‘Î’l
-renderer.domElement.style.top = "0px";                // ƒŒƒ“ƒ_ƒ‰‚Ìã’[
-renderer.domElement.style.left = "0px";               // ƒŒƒ“ƒ_ƒ‰‚Ì¶’[
-document.body.appendChild(renderer.domElement);       // ƒŒƒ“ƒ_ƒ‰‚Ì DOM ‚ğ body ‚É“ü‚ê‚é
-var camera = new THREE.Camera();                      // ƒJƒƒ‰‚Ìì¬
-scene.add(camera);                                    // ƒJƒƒ‰‚ğƒV[ƒ“‚É’Ç‰Á
-var light = new THREE.DirectionalLight(0xffffff);     // •½sŒõŒ¹i”’j‚ğì¬
-light.position.set(0, 0, 2);				// ƒJƒƒ‰•ûŒü‚©‚çÆ‚ç‚·
-scene.add(light);					// ƒV[ƒ“‚ÉŒõŒ¹‚ğ’Ç‰Á
-var ambientlight = new THREE.AmbientLight(0x888888);	// ŠÂ‹«Œõ‚ğ’Ç‰Á
-scene.add(ambientlight);				// ƒV[ƒ“‚ÉŒõŒ¹‚ğ’Ç‰Á
+renderer.setClearColor(new THREE.Color("black"), 0);  // ãƒ¬ãƒ³ãƒ€ãƒ©ã®èƒŒæ™¯è‰²
+renderer.setSize(640, 480);                           // ãƒ¬ãƒ³ãƒ€ãƒ©ã®ã‚µã‚¤ã‚º
+renderer.domElement.style.position = "absolute";      // ãƒ¬ãƒ³ãƒ€ãƒ©ã®ä½ç½®ã¯çµ¶å¯¾å€¤
+renderer.domElement.style.top = "0px";                // ãƒ¬ãƒ³ãƒ€ãƒ©ã®ä¸Šç«¯
+renderer.domElement.style.left = "0px";               // ãƒ¬ãƒ³ãƒ€ãƒ©ã®å·¦ç«¯
+document.body.appendChild(renderer.domElement);       // ãƒ¬ãƒ³ãƒ€ãƒ©ã® DOM ã‚’ body ã«å…¥ã‚Œã‚‹
+var camera = new THREE.Camera();                      // ã‚«ãƒ¡ãƒ©ã®ä½œæˆ
+scene.add(camera);                                    // ã‚«ãƒ¡ãƒ©ã‚’ã‚·ãƒ¼ãƒ³ã«è¿½åŠ 
+var light = new THREE.DirectionalLight(0xffffff);     // å¹³è¡Œå…‰æºï¼ˆç™½ï¼‰ã‚’ä½œæˆ
+light.position.set(0, 0, 2);				// ã‚«ãƒ¡ãƒ©æ–¹å‘ã‹ã‚‰ç…§ã‚‰ã™
+scene.add(light);					// ã‚·ãƒ¼ãƒ³ã«å…‰æºã‚’è¿½åŠ 
+var ambientlight = new THREE.AmbientLight(0x888888);	// ç’°å¢ƒå…‰ã‚’è¿½åŠ 
+scene.add(ambientlight);				// ã‚·ãƒ¼ãƒ³ã«å…‰æºã‚’è¿½åŠ 
 
 var ar = new AR(scene, camera);
 
 ar.init();
 
 //===================================================================
-// ƒŒƒ“ƒ_ƒŠƒ“ƒOEƒ‹[ƒv
+// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ»ãƒ«ãƒ¼ãƒ—
 //===================================================================
-function renderScene() { 					// ƒŒƒ“ƒ_ƒŠƒ“ƒOŠÖ”
-	requestAnimationFrame(renderScene);			// ƒ‹[ƒv‚ğ—v‹
-	if(source.ready === false)    { return; }		// ƒƒfƒBƒAƒ\[ƒX‚Ì€”õ‚ª‚Å‚«‚Ä‚¢‚È‚¯‚ê‚Î”²‚¯‚é
-	context.update(source.domElement);			// ARToolkit‚ÌƒRƒ“ƒeƒLƒXƒg‚ğXV
+function renderScene() { 					// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°é–¢æ•°
+	requestAnimationFrame(renderScene);			// ãƒ«ãƒ¼ãƒ—ã‚’è¦æ±‚
+	if(source.ready === false)    { return; }		// ãƒ¡ãƒ‡ã‚£ã‚¢ã‚½ãƒ¼ã‚¹ã®æº–å‚™ãŒã§ãã¦ã„ãªã‘ã‚Œã°æŠœã‘ã‚‹
+	context.update(source.domElement);			// ARToolkitã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’æ›´æ–°
 	ar.update();
-  	renderer.render(scene, camera);				// ƒŒƒ“ƒ_ƒŠƒ“ƒOÀ{
+  	renderer.render(scene, camera);				// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°å®Ÿæ–½
 }
-renderScene();							// Å‰‚É1‰ñ‚¾‚¯ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ğƒgƒŠƒK
+renderScene();							// æœ€åˆã«1å›ã ã‘ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚’ãƒˆãƒªã‚¬
 

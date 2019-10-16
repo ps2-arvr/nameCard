@@ -1,4 +1,4 @@
-/////////////////////Šî’êƒNƒ‰ƒX/////////////////////
+/////////////////////åŸºåº•ã‚¯ãƒ©ã‚¹/////////////////////
 function Geometry(marker){
 	this.marker = marker;
 }
@@ -19,33 +19,33 @@ Geometry.prototype = {
 };
 /////////////////////////////////////////////////////
 
-/////////////////////qƒNƒ‰ƒXiƒƒPƒbƒgƒNƒ‰ƒX‚Ì’è‹`j/////////////////////
+/////////////////////å­ã‚¯ãƒ©ã‚¹ï¼ˆãƒ­ã‚±ãƒƒãƒˆã‚¯ãƒ©ã‚¹ã®å®šç¾©ï¼‰/////////////////////
 function Rocket(geometryInstance){
 	this.geometryInstance = geometryInstance;
 }
 Rocket.prototype = this.geometryInstance;
 Rocket.prototype.createObject = function(){
 	var rocketMesh;
-	// jsonŒ`®‚Ìƒ‚ƒfƒ‹‚ğ“Ç‚İ‚Şƒ[ƒ_
+	// jsonå½¢å¼ã®ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€ãƒ­ãƒ¼ãƒ€
 	var loader = new THREE.JSONLoader();
-	// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚Ş
+	// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 	loader.load("./model/rocketX.json", function(geo, mat) {
 		mat = new THREE.MeshPhongMaterial({map:THREE.ImageUtils.loadTexture("./model/rocketX.png")});
-		// ƒƒbƒVƒ…‰»
+		// ãƒ¡ãƒƒã‚·ãƒ¥åŒ–
 		rocketMesh = new THREE.Mesh(geo, mat);
-		// ƒƒbƒVƒ…‚Ì–¼‘OiŒã‚ÅƒsƒbƒLƒ“ƒO‚Åg‚¤j
+		// ãƒ¡ãƒƒã‚·ãƒ¥ã®åå‰ï¼ˆå¾Œã§ãƒ”ãƒƒã‚­ãƒ³ã‚°ã§ä½¿ã†ï¼‰
 		rocketMesh.name = "rocket";	
-		// ‰ŠúƒTƒCƒYiŒ»•¨‡‚í‚¹j
+		// åˆæœŸã‚µã‚¤ã‚ºï¼ˆç¾ç‰©åˆã‚ã›ï¼‰
 		rocketMesh.scale.set(0.3, 0.3, 0.3);
-		// ‰ŠúˆÊ’uiŒ»•¨‡‚í‚¹j
+		// åˆæœŸä½ç½®ï¼ˆç¾ç‰©åˆã‚ã›ï¼‰
 		rocketMesh.position.set(0, 0.5, 0);
-		// ƒƒbƒVƒ…‚ğƒ}[ƒJ‚É’Ç‰Á
+		// ãƒ¡ãƒƒã‚·ãƒ¥ã‚’ãƒãƒ¼ã‚«ã«è¿½åŠ 
 		this.marker.add(rocketMesh);
 	});
 }
 ////////////////////////////////////////////////////////////////////////
 
-/////////////////////qƒNƒ‰ƒXiƒA[ƒXƒNƒ‰ƒX‚Ì’è‹`j/////////////////////
+/////////////////////å­ã‚¯ãƒ©ã‚¹ï¼ˆã‚¢ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹ã®å®šç¾©ï¼‰/////////////////////
 function Earth(geometryInstance){
 	this.geometryInstance = geometryInstance;
 }
@@ -90,13 +90,13 @@ Earth.prototype.update = function(dt){
 }
 ////////////////////////////////////////////////////////////////////////
 
-/////////////////////qƒNƒ‰ƒXiƒrƒfƒIƒNƒ‰ƒX‚Ì’è‹`j/////////////////////
+/////////////////////å­ã‚¯ãƒ©ã‚¹ï¼ˆãƒ“ãƒ‡ã‚ªã‚¯ãƒ©ã‚¹ã®å®šç¾©ï¼‰/////////////////////
 function Video(geometryInstance){
 	this.geometryInstance = geometryInstance;
 }
 Video.prototype = this.geometryInstance;
 Video.prototype.createObject = function(){
-	//video—v‘f
+	//videoè¦ç´ 
 	this.video = document.createElement( 'video' );
 	this.video.loop = true;
 	this.video.muted = true;
@@ -112,12 +112,12 @@ Video.prototype.createObject = function(){
 	this.videoImageContext.fillStyle = '#000000';
 	this.videoImageContext.fillRect(0, 0, videoImage.width, videoImage.height);
 
-	//¶¬‚µ‚½canvas‚ğtexture‚Æ‚µ‚ÄTHREE.TextureƒIƒuƒWƒFƒNƒg‚ğ¶¬
+	//ç”Ÿæˆã—ãŸcanvasã‚’textureã¨ã—ã¦THREE.Textureã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
 	this.videoTexture = new THREE.Texture(videoImage);
 	this.videoTexture.minFilter = THREE.LinearFilter;
 	this.videoTexture.magFilter = THREE.LinearFilter;
 
-	//¶¬‚µ‚½video texture‚ğmap‚Éw’è‚µAoverdraw‚ğture‚É‚µ‚Äƒ}ƒeƒŠƒAƒ‹‚ğ¶¬
+	//ç”Ÿæˆã—ãŸvideo textureã‚’mapã«æŒ‡å®šã—ã€overdrawã‚’tureã«ã—ã¦ãƒãƒ†ãƒªã‚¢ãƒ«ã‚’ç”Ÿæˆ
 	var movieMaterial = new THREE.MeshBasicMaterial({map: videoTexture, overdraw: true, side:THREE.DoubleSide});
 	var movieGeometry = new THREE.BoxGeometry(1,0.05,1);
 	var movieScreen = new THREE.Mesh(movieGeometry, movieMaterial);
