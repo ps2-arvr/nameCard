@@ -1,4 +1,5 @@
 var clock = new THREE.Clock();
+var source, context;
 
 class ARObject{
 	constructor(scene, camera){
@@ -11,7 +12,7 @@ class ARObject{
 		//===================================================================
 		// arToolkitSource（マーカトラッキングするメディアソース）
 		//===================================================================
-		var source = new THREEx.ArToolkitSource({             // arToolkitSourceの作成
+		source = new THREEx.ArToolkitSource({             // arToolkitSourceの作成
 			sourceType: "webcam",                         // Webカメラ設定
 		});
 
@@ -22,16 +23,16 @@ class ARObject{
 		//===================================================================
 		// arToolkitContext（カメラパラメータ、マーカ検出設定）
 		//===================================================================
-		var context = new THREEx.ArToolkitContext({							 // arToolkitContextの作成
+		context = new THREEx.ArToolkitContext({							 // arToolkitContextの作成
   			debug: false,                                    // デバッグ用キャンバス表示（デフォルトfalse）
   			cameraParametersUrl: "./data/camera_para.dat",   // カメラパラメータファイル
   			detectionMode: "mono",                           // 検出モード（color/color_and_matrix/mono/mono_and_matrix）
   			imageSmoothingEnabled: true,                     // 画像をスムージングするか（デフォルトfalse）
   			maxDetectionRate: 60,                            // マーカの検出レート（デフォルト60）
-  			canvasWidth: this.source.parameters.sourceWidth,      // マーカ検出用画像の幅（デフォルト640）
-  			canvasHeight: this.source.parameters.sourceHeight,    // マーカ検出用画像の高さ（デフォルト480）
+  			canvasWidth: source.parameters.sourceWidth,      // マーカ検出用画像の幅（デフォルト640）
+  			canvasHeight: source.parameters.sourceHeight,    // マーカ検出用画像の高さ（デフォルト480）
 		});
-		var context.init(function onCompleted(){		  			// コンテクスト初期化が完了したら
+		context.init(function onCompleted(){		  			// コンテクスト初期化が完了したら
 			this.camera.projectionMatrix.copy(context.getProjectionMatrix());       // 射影行列をコピー
 		});
 		
