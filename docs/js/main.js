@@ -15,10 +15,10 @@ document.body.appendChild(renderer.domElement);       // レンダラの DOM を body 
 var camera = new THREE.Camera();                      // カメラの作成
 scene.add(camera);                                    // カメラをシーンに追加
 var light = new THREE.DirectionalLight(0xffffff);     // 平行光源（白）を作成
-light.position.set(0, 0, 2);                          // カメラ方向から照らす
-scene.add(light);                                     // シーンに光源を追加
-var ambientlight = new THREE.AmbientLight(0x888888);  // 環境光を追加
-scene.add(ambientlight);　　　　　　　　　　　　　　　// シーンに光源を追加
+light.position.set(0, 0, 2);				// カメラ方向から照らす
+scene.add(light);					// シーンに光源を追加
+var ambientlight = new THREE.AmbientLight(0x888888);	// 環境光を追加
+scene.add(ambientlight);				// シーンに光源を追加
 
 var ar = new AR(scene, camera);
 
