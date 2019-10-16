@@ -1,7 +1,8 @@
-class AR{
+class ARObject{
 	constructor(scene, camera){
 		this.scene = scene;
 		this.camera = camera;
+		this.arObject = null;
 	}
 
 	init(){
@@ -65,14 +66,11 @@ class AR{
   			patternUrl: dictionaryData,				 // マーカファイル
 		});
 
-		this.scene.add(marker);
+		this.arScene.add(marker);
 		
-		var geometry = new Geometry(marker);
-
-		this.arObject = geometry.getInstance(dictionaryName, geometry);
-		
+		this.arObject = Geometry.getInstance(dictionaryName);
+		this.arObject.setMarkerObject(marker);
 		this.arObject.createObject();
-
 	}
 
 	update(){
