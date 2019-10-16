@@ -9,11 +9,11 @@ class ARObject{
 		//===================================================================
 		// arToolkitSource（マーカトラッキングするメディアソース）
 		//===================================================================
-		var source = new THREEx.ArToolkitSource({             // arToolkitSourceの作成
+		this.source = new THREEx.ArToolkitSource({             // arToolkitSourceの作成
 			sourceType: "webcam",                         // Webカメラ設定
 		});
 
-		source.init(function onReady() {                      // ソースを初期化し、準備ができたら
+		this.source.init(function onReady() {                      // ソースを初期化し、準備ができたら
   			onResize();                                   // リサイズ処理
 		});
 
@@ -26,24 +26,13 @@ class ARObject{
   			detectionMode: "mono",                           // 検出モード（color/color_and_matrix/mono/mono_and_matrix）
   			imageSmoothingEnabled: true,                     // 画像をスムージングするか（デフォルトfalse）
   			maxDetectionRate: 60,                            // マーカの検出レート（デフォルト60）
-  			canvasWidth: source.parameters.sourceWidth,      // マーカ検出用画像の幅（デフォルト640）
-  			canvasHeight: source.parameters.sourceHeight,    // マーカ検出用画像の高さ（デフォルト480）
+  			canvasWidth: this.source.parameters.sourceWidth,      // マーカ検出用画像の幅（デフォルト640）
+  			canvasHeight: this.source.parameters.sourceHeight,    // マーカ検出用画像の高さ（デフォルト480）
 		});
 		this.context.init(function onCompleted(){		  			// コンテクスト初期化が完了したら
 			this.camera.projectionMatrix.copy(this.context.getProjectionMatrix());  // 射影行列をコピー
 		});
 		
-		window.addEventListener("resize", function() {		// ウィンドウがリサイズされたら
-  			onResize();                                     // リサイズ処理
-		});
-		
-		function onResize(){
-  			source.onResizeElement();                           // トラッキングソースをリサイズ
-  			source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
-  			if(context.arController !== null){                  // arControllerがnullでなければ
-    				source.copyElementSizeTo(context.arController.canvas);  // それも同じサイズに
-  			} 
-		}
 
 		//===================================================================
 		// ArMarkerControls（マーカと、マーカ検出時の表示オブジェクト）
@@ -54,19 +43,19 @@ class ARObject{
 		var string = new String();
 		var dictionaryName = string.getValue('marker_name');
 
-		if(dictionaryData == null){
-			alert('DictionaryData is undefined');
+		if(dictionaryName == null){
+			alert('dictionaryName dose not exit');
 			return null;
 		}
 
 		var dictionaryData = "./data/" + dictionaryName + ".patt";
 
-		var controls = new THREEx.ArMarkerControls(context, marker, {    // マーカを登録
+		var controls = new THREEx.ArMarkerControls(this.context, marker, {    // マーカを登録
   			type: "pattern",					 // マーカのタイプ
   			patternUrl: dictionaryData,				 // マーカファイル
 		});
 
-		this.arScene.add(marker);
+		this.scene.add(marker);
 		
 		this.arObject = Geometry.getInstance(dictionaryName);
 		this.arObject.setMarkerObject(marker);

@@ -23,13 +23,25 @@ scene.add(ambientlight);				// シーンに光源を追加
 
 ar.init();
 
+window.addEventListener("resize", function() {		// ウィンドウがリサイズされたら
+	onResize();                                     // リサイズ処理
+});
+
+function onResize(){
+	ar.source.onResizeElement();                           // トラッキングソースをリサイズ
+  	ar.source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
+  	if(ar.context.arController !== null){                  // arControllerがnullでなければ
+    		ar.source.copyElementSizeTo(ar.context.arController.canvas);  // それも同じサイズに
+  	} 
+}
+
 //===================================================================
 // レンダリング・ループ
 //===================================================================
 function renderScene() { 					// レンダリング関数
 	requestAnimationFrame(renderScene);			// ループを要求
-	if(source.ready === false)    { return; }		// メディアソースの準備ができていなければ抜ける
-	context.update(source.domElement);			// ARToolkitのコンテキストを更新
+	if(ar.source.ready === false)    { return; }		// メディアソースの準備ができていなければ抜ける
+	ar.context.update(source.domElement);			// ARToolkitのコンテキストを更新
 	ar.update();
   	renderer.render(scene, camera);				// レンダリング実施
 }

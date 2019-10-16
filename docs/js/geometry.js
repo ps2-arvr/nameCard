@@ -1,3 +1,6 @@
+let geometryInstance = null;
+let arMarker = null;
+
 //------------------基底クラス--------------------
 class Geometry {
 	constructor(){
@@ -10,21 +13,21 @@ class Geometry {
 	}
 
 	setMarkerObject(marker){
-		this.marker = marker;
+		arMarker = marker;
 	}
 
 	static getInstance(objectName){
-		if(this.arGeometry != null){
-			return this.arGeometry
+		if(geometryInstance != null){
+			return geometryInstance;
 		}
 		if(objectName == 'rocket'){
-			this.arGeometry = new Rocket();
+			geometryInstance = new Rocket();
 		}else if(objectName == 'earth'){
-			this.arGeometry = new Earth();
+			geometryInstance = new Earth();
 		}else{
-			this.arGeometry = new Video();
+			geometryInstance = new Video();
 		}
-		return this.arObject;
+		return geometryInstance;
 	}
 
 }
@@ -49,7 +52,7 @@ class Rocket extends Geometry{
 			// 初期位置（現物合わせ）
 			rocketMesh.position.set(0, 0.5, 0);
 			// メッシュをマーカに追加
-			this.marker.add(rocketMesh);
+			arMarker.add(rocketMesh);
 		});
 	}
 }
@@ -66,7 +69,7 @@ class Earth extends Geometry{
 		var geometryEarth = new THREE.SphereGeometry(18,32,32);
 		this.meshEarth = new THREE.Mesh( geometryEarth, materialEarth );
 		this.meshEarth.position.set(0, 0, 50);
-		this.marker.add(this.meshEarth);
+		arMarker.add(this.meshEarth);
 
 		this.meshCloud = new THREE.Mesh();
 		var loaderCloud = new THREE.TextureLoader();
@@ -75,7 +78,7 @@ class Earth extends Geometry{
 		var geometryCloud = new THREE.SphereGeometry(18.1,32,32);
 		this.meshCloud = new THREE.Mesh( geometryCloud, materialCloud );
 		this.meshCloud.position.set(0, 0, 50);
-		this.marker.add(this.meshCloud);
+		arMarker.add(this.meshCloud);
 
 		var meshMoon = new THREE.Mesh();
 		var loaderMoon = new THREE.TextureLoader();
@@ -88,7 +91,7 @@ class Earth extends Geometry{
 		this.sceneCenter.position.set(0, 0, 50);
 		this.sceneCenter.add(meshMoon);
 		meshMoon.position.set(0, 0, 50);
-		this.marker.add(this.sceneCenter);
+		arMarker.add(this.sceneCenter);
 	}
 
 	update(dt){
@@ -131,7 +134,7 @@ class Video extends Geometry{
 
 		movieScreen.name = "plane";
 		movieScreen.position.set(0, 0.5, 0);
-		this.marker.add(movieScreen);
+		arMarker.add(movieScreen);
 	}
 
 	update(dt){
