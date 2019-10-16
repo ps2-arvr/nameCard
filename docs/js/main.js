@@ -21,15 +21,13 @@ scene.add(light);					// シーンに光源を追加
 var ambientlight = new THREE.AmbientLight(0x888888);	// 環境光を追加
 scene.add(ambientlight);				// シーンに光源を追加
 
-ar.init();
+ar.init(renderer);
 
 //===================================================================
 // レンダリング・ループ
 //===================================================================
 function renderScene() { 					// レンダリング関数
 	requestAnimationFrame(renderScene);			// ループを要求
-	if(ar.source.ready === false)    { return; }		// メディアソースの準備ができていなければ抜ける
-	ar.context.update(ar.source.domElement);		// ARToolkitのコンテキストを更新
 	ar.update();
   	renderer.render(scene, camera);				// レンダリング実施
 }

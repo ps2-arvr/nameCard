@@ -7,25 +7,22 @@ class ARObject{
 		this.arObject = null;
 	}
 
-	init(){
+	init(renderer){
 		//===================================================================
 		// arToolkitSource（マーカトラッキングするメディアソース）
 		//===================================================================
-		this.source = new THREEx.ArToolkitSource({		// arToolkitSourceの作成
-			sourceType: "webcam",				// Webカメラ設定
+		var source = new THREEx.ArToolkitSource({             // arToolkitSourceの作成
+			sourceType: "webcam",                         // Webカメラ設定
 		});
-		
-		this.source.init(function onReady() {			// ソースを初期化し、準備ができたら
-			ARObject.onResize();				// リサイズ処理
+
+		source.init(function onReady() {                      // ソースを初期化し、準備ができたら
+  			onResize();                                   // リサイズ処理
 		});
-		window.addEventListener("resize", function() {		// ウィンドウがリサイズされたら
-			ARObject.onResize();				// リサイズ処理
-		});	
 
 		//===================================================================
 		// arToolkitContext（カメラパラメータ、マーカ検出設定）
 		//===================================================================
-		this.context = new THREEx.ArToolkitContext({							 // arToolkitContextの作成
+		var context = new THREEx.ArToolkitContext({							 // arToolkitContextの作成
   			debug: false,                                    // デバッグ用キャンバス表示（デフォルトfalse）
   			cameraParametersUrl: "./data/camera_para.dat",   // カメラパラメータファイル
   			detectionMode: "mono",                           // 検出モード（color/color_and_matrix/mono/mono_and_matrix）
@@ -34,9 +31,24 @@ class ARObject{
   			canvasWidth: this.source.parameters.sourceWidth,      // マーカ検出用画像の幅（デフォルト640）
   			canvasHeight: this.source.parameters.sourceHeight,    // マーカ検出用画像の高さ（デフォルト480）
 		});
-		this.context.init(function onCompleted(){		  			// コンテクスト初期化が完了したら
-			this.camera.projectionMatrix.copy(this.context.getProjectionMatrix());  // 射影行列をコピー
+		var context.init(function onCompleted(){		  			// コンテクスト初期化が完了したら
+			this.camera.projectionMatrix.copy(context.getProjectionMatrix());       // 射影行列をコピー
 		});
+		
+		//===================================================================
+		// リサイズ処理
+		//===================================================================
+		window.addEventListener("resize", function() {		// ウィンドウがリサイズされたら
+			onResize();                                     // リサイズ処理
+		});
+
+		function onResize(){
+			source.onResizeElement();                           // トラッキングソースをリサイズ
+  			source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
+  			if(context.arController !== null){                  // arControllerがnullでなければ
+    				source.copyElementSizeTo(context.arController.canvas);  // それも同じサイズに
+  			} 
+		}
 
 		//===================================================================
 		// ArMarkerControls（マーカと、マーカ検出時の表示オブジェクト）
@@ -64,20 +76,11 @@ class ARObject{
 		this.arObject = Geometry.getInstance(dictionaryName);
 		this.arObject.setMarkerObject(marker);
 		this.arObject.createObject();
-
-		var source = this.source;
-		var context = this.context;
-	}
-
-	static onResize(){
-		source.onResizeElement();                           // トラッキングソースをリサイズ
-		source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
-  		if(context.arController !== null){                  // arControllerがnullでなければ
-  	 		source.copyElementSizeTo(context.arController.canvas);  // それも同じサイズに
-  		} 
 	}
 
 	update(){
+		if(source.ready === false)    { return; }		// メディアソースの準備ができていなければ抜ける
+		context.update(source.domElement);			// ARToolkitのコンテキストを更新
 		this.arObject.update(clock.getDelta());
 	}
 }
