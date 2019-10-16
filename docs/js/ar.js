@@ -16,8 +16,9 @@ class ARObject{
 		});
 
 		this.source.init(function onReady() {                      // ソースを初期化し、準備ができたら
-  			this.onResize();                                   // リサイズ処理
+  			onResize();                                        // リサイズ処理
 		});
+		
 
 		//===================================================================
 		// arToolkitContext（カメラパラメータ、マーカ検出設定）
@@ -35,6 +36,17 @@ class ARObject{
 			this.camera.projectionMatrix.copy(this.context.getProjectionMatrix());  // 射影行列をコピー
 		});
 		
+		window.addEventListener("resize", function() {		// ウィンドウがリサイズされたら
+			onResize();                                     // リサイズ処理
+		});
+
+		function onResize(){
+ 			this.source.onResizeElement();                           // トラッキングソースをリサイズ
+			this.source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
+  			if(this.context.arController !== null){                  // arControllerがnullでなければ
+    				this.source.copyElementSizeTo(this.context.arController.canvas);  // それも同じサイズに
+  			} 
+		}
 
 		//===================================================================
 		// ArMarkerControls（マーカと、マーカ検出時の表示オブジェクト）
