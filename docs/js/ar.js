@@ -40,11 +40,14 @@ class ARObject{
 			onResize();                                     // リサイズ処理
 		});
 
+		var source = this.source;
+		var context = this.context;
+
 		function onResize(){
- 			this.source.onResizeElement();                           // トラッキングソースをリサイズ
-			this.source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
-  			if(this.context.arController !== null){                  // arControllerがnullでなければ
-    				this.source.copyElementSizeTo(this.context.arController.canvas);  // それも同じサイズに
+ 			source.onResizeElement();                           // トラッキングソースをリサイズ
+			source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
+  			if(context.arController !== null){                  // arControllerがnullでなければ
+    				source.copyElementSizeTo(context.arController.canvas);  // それも同じサイズに
   			} 
 		}
 
@@ -74,14 +77,6 @@ class ARObject{
 		this.arObject = Geometry.getInstance(dictionaryName);
 		this.arObject.setMarkerObject(marker);
 		this.arObject.createObject();
-	}
-
-	onResize(){
-		this.source.onResizeElement();                           // トラッキングソースをリサイズ
-  		this.source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
-  		if(this.context.arController !== null){                  // arControllerがnullでなければ
-    			this.source.copyElementSizeTo(this.context.arController.canvas);  // それも同じサイズに
-		}
 	}
 
 
