@@ -24,16 +24,9 @@ scene.add(ambientlight);				// シーンに光源を追加
 ar.init();
 
 window.addEventListener("resize", function() {		// ウィンドウがリサイズされたら
-	onResize();                                     // リサイズ処理
+	ar.onResize();                                     // リサイズ処理
 });
 
-function onResize(){
-	ar.source.onResizeElement();                           // トラッキングソースをリサイズ
-  	ar.source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
-  	if(ar.context.arController !== null){                  // arControllerがnullでなければ
-    		ar.source.copyElementSizeTo(ar.context.arController.canvas);  // それも同じサイズに
-  	} 
-}
 
 //===================================================================
 // レンダリング・ループ

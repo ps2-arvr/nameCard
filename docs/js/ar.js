@@ -16,7 +16,7 @@ class ARObject{
 		});
 
 		this.source.init(function onReady() {                      // ソースを初期化し、準備ができたら
-  			onResize();                                   // リサイズ処理
+  			this.onResize();                                   // リサイズ処理
 		});
 
 		//===================================================================
@@ -63,6 +63,15 @@ class ARObject{
 		this.arObject.setMarkerObject(marker);
 		this.arObject.createObject();
 	}
+
+	onResize(){
+		this.source.onResizeElement();                           // トラッキングソースをリサイズ
+  		this.source.copyElementSizeTo(renderer.domElement);      // レンダラも同じサイズに
+  		if(this.context.arController !== null){                  // arControllerがnullでなければ
+    			this.source.copyElementSizeTo(this.context.arController.canvas);  // それも同じサイズに
+		}
+	}
+
 
 	update(){
 		this.arObject.update(clock.getDelta());
