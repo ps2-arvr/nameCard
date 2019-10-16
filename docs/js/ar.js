@@ -67,7 +67,7 @@ class ARObject{
 
 		var dictionaryData = "./data/" + dictionaryName + ".patt";
 
-		var controls = new THREEx.ArMarkerControls(this.context, marker, {    // マーカを登録
+		var controls = new THREEx.ArMarkerControls(context, marker, {    // マーカを登録
   			type: "pattern",					 // マーカのタイプ
   			patternUrl: dictionaryData,				 // マーカファイル
 		});
