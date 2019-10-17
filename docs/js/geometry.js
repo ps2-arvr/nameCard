@@ -37,7 +37,12 @@ class Geometry {
 class Rocket extends Geometry{
 	
 	createObject(){
-		var geo, mat;
+		var geo = new THREE.CubeGeometry(1, 1, 1);          // cube ジオメトリ（サイズは 1x1x1）
+		var mat = new THREE.MeshNormalMaterial({            // マテリアルの作成
+  		transparent: true,                                  // 透過
+  		opacity: 0.8,                                       // 不透明度
+		side: THREE.DoubleSide,                             // 内側も描く
+	});
 		var rocketMesh;
 		// json形式のモデルを読み込むローダ
 		var loader = new THREE.JSONLoader();
@@ -129,7 +134,7 @@ class Video extends Geometry{
 		this.videoTexture.magFilter = THREE.LinearFilter;
 
 		//生成したvideo textureをmapに指定し、overdrawをtureにしてマテリアルを生成
-		var movieMaterial = new THREE.MeshBasicMaterial({map: videoTexture, overdraw: true, side:THREE.DoubleSide});
+		var movieMaterial = new THREE.MeshBasicMaterial({map: this.videoTexture, overdraw: true, side:THREE.DoubleSide});
 		var movieGeometry = new THREE.BoxGeometry(1,0.05,1);
 		var movieScreen = new THREE.Mesh(movieGeometry, movieMaterial);
 

@@ -3,7 +3,7 @@
 //===================================================================
 var scene = new THREE.Scene();                        // シーンの作成
 var camera = new THREE.Camera();                      // カメラの作成
-var ar = new ARObject(scene, camera);
+var ar = new ARObject(scene);
 var renderer = new THREE.WebGLRenderer({              // レンダラの作成
   antialias: true,                                    // アンチエイリアス有効
   alpha: true,                                        // canvasに透明度バッファを持たせる
@@ -21,15 +21,17 @@ scene.add(light);					// シーンに光源を追加
 var ambientlight = new THREE.AmbientLight(0x888888);	// 環境光を追加
 scene.add(ambientlight);				// シーンに光源を追加
 
-ar.init(renderer);
+ar.init(renderer, camera);
 
 //===================================================================
 // レンダリング・ループ
 //===================================================================
 function renderScene() { 					// レンダリング関数
 	requestAnimationFrame(renderScene);			// ループを要求
-	ar.update();
+	if(ar.update() === false){
+		return;
+	}
   	renderer.render(scene, camera);				// レンダリング実施
 }
-renderScene();							// 最初に1回だけレンダリングをトリガ
+//renderScene();							// 最初に1回だけレンダリングをトリガ
 

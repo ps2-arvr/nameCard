@@ -1,14 +1,17 @@
 var clock = new THREE.Clock();
-var source, context;
+var source;
+var context;
+var controls;
+var marker;
+var dictionaryData;
 
 class ARObject{
-	constructor(scene, camera){
+	constructor(scene){
 		this.scene = scene;
-		this.camera = camera;
 		this.arObject = null;
 	}
 
-	init(renderer){
+	init(renderer, camera){
 		//===================================================================
 		// arToolkitSource（マーカトラッキングするメディアソース）
 		//===================================================================
@@ -33,7 +36,7 @@ class ARObject{
   			canvasHeight: source.parameters.sourceHeight,    // マーカ検出用画像の高さ（デフォルト480）
 		});
 		context.init(function onCompleted(){		  			// コンテクスト初期化が完了したら
-			this.camera.projectionMatrix.copy(context.getProjectionMatrix());       // 射影行列をコピー
+			camera.projectionMatrix.copy(context.getProjectionMatrix());       // 射影行列をコピー
 		});
 		
 		//===================================================================
@@ -54,7 +57,7 @@ class ARObject{
 		//===================================================================
 		// ArMarkerControls（マーカと、マーカ検出時の表示オブジェクト）
 		//===================================================================
-		var marker = new THREE.Group();
+		marker = new THREE.Group();
 
 		//パラメータから辞書データ名を取得
 		var string = new String();
@@ -65,9 +68,9 @@ class ARObject{
 			return null;
 		}
 
-		var dictionaryData = "./data/" + dictionaryName + ".patt";
+		dictionaryData = "./data/" + dictionaryName + ".patt";
 
-		var controls = new THREEx.ArMarkerControls(context, marker, {    // マーカを登録
+		controls = new THREEx.ArMarkerControls(context, marker, {    // マーカを登録
   			type: "pattern",					 // マーカのタイプ
   			patternUrl: dictionaryData,				 // マーカファイル
 		});
@@ -80,7 +83,7 @@ class ARObject{
 	}
 
 	update(){
-		if(source.ready === false)    { return; }		// メディアソースの準備ができていなければ抜ける
+		if(source.ready === false)    { return false; }		// メディアソースの準備ができていなければ抜ける
 		context.update(source.domElement);			// ARToolkitのコンテキストを更新
 		this.arObject.update(clock.getDelta());
 	}
