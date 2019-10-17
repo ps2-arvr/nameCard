@@ -33,5 +33,5 @@ function renderScene() { 					// レンダリング関数
 	}
   	renderer.render(scene, camera);				// レンダリング実施
 }
-//renderScene();							// 最初に1回だけレンダリングをトリガ
+renderScene();							// 最初に1回だけレンダリングをトリガ
 
