@@ -65,7 +65,7 @@ class Earth extends Geometry{
 	createObject(){
 		this.meshEarth = new THREE.Mesh();
 		var loaderEarth = new THREE.TextureLoader();
-		var textureEarth = loaderEarth.load( './img/earth.png');
+		var textureEarth = loaderEarth.load( './img/earth_tex.png');
 		var materialEarth = new THREE.MeshBasicMaterial({ map:textureEarth });
 		var geometryEarth = new THREE.SphereGeometry(18,32,32);
 		this.meshEarth = new THREE.Mesh( geometryEarth, materialEarth );
@@ -74,7 +74,7 @@ class Earth extends Geometry{
 
 		this.meshCloud = new THREE.Mesh();
 		var loaderCloud = new THREE.TextureLoader();
-		var textureCloud = loaderCloud.load( './img/cloud.png');
+		var textureCloud = loaderCloud.load( './img/cloud_tex.png');
 		var materialCloud = new THREE.MeshBasicMaterial({ map:textureCloud, transparent:true });
 		var geometryCloud = new THREE.SphereGeometry(18.1,32,32);
 		this.meshCloud = new THREE.Mesh( geometryCloud, materialCloud );
@@ -83,7 +83,7 @@ class Earth extends Geometry{
 
 		var meshMoon = new THREE.Mesh();
 		var loaderMoon = new THREE.TextureLoader();
-		var textureMoon = loaderMoon.load( './img/moon.png');
+		var textureMoon = loaderMoon.load( './img/moon_tex.png');
 		var materialMoon = new THREE.MeshBasicMaterial({ map:textureMoon});
 		var geometryMoon = new THREE.SphereGeometry(5,32,32);
 		var meshMoon = new THREE.Mesh( geometryMoon, materialMoon );
