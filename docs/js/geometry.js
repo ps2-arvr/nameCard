@@ -72,38 +72,41 @@ class Earth extends Geometry{
 		var loaderEarth = new THREE.TextureLoader();
 		var textureEarth = loaderEarth.load( './image/earth_tex.png');
 		var materialEarth = new THREE.MeshBasicMaterial({ map:textureEarth });
-		var geometryEarth = new THREE.SphereGeometry(1.8,3.2,3.2);
+		var geometryEarth = new THREE.SphereGeometry(0.1,0.3,0.3);
 		this.meshEarth = new THREE.Mesh( geometryEarth, materialEarth );
 		this.meshEarth.position.set(0, 0.5, 0);
 		arMarker.add(this.meshEarth);
 
-		//this.meshCloud = new THREE.Mesh();
-		//var loaderCloud = new THREE.TextureLoader();
-		//var textureCloud = loaderCloud.load( './image/cloud_tex.png');
-		//var materialCloud = new THREE.MeshBasicMaterial({ map:textureCloud, transparent:true });
-		//var geometryCloud = new THREE.SphereGeometry(1.8.1.0,3.2,3.2);
-		//this.meshCloud = new THREE.Mesh( geometryCloud, materialCloud );
-		//this.meshCloud.position.set(0, 0.5, 0);
-		//arMarker.add(this.meshCloud);
+		this.meshCloud = new THREE.Mesh();
+		var loaderCloud = new THREE.TextureLoader();
+		var textureCloud = loaderCloud.load( './image/cloud_tex.png');
+		var materialCloud = new THREE.MeshBasicMaterial({ map:textureCloud, transparent:true });
+		var geometryCloud = new THREE.SphereGeometry(0.1,0.1,0.3,0.3);
+		this.meshCloud = new THREE.Mesh( geometryCloud, materialCloud );
+		this.meshCloud.position.set(0, 0.5, 0);
+		arMarker.add(this.meshCloud);
 
-		//var meshMoon = new THREE.Mesh();
-		//var loaderMoon = new THREE.TextureLoader();
-		//var textureMoon = loaderMoon.load( './image/moon_tex.png');
-		//var materialMoon = new THREE.MeshBasicMaterial({ map:textureMoon});
-		//var geometryMoon = new THREE.SphereGeometry(0.5,3.2,3.2);
-		//var meshMoon = new THREE.Mesh( geometryMoon, materialMoon );
+		this.meshMoon = new THREE.Mesh();
+		var loaderMoon = new THREE.TextureLoader();
+		var textureMoon = loaderMoon.load( './image/moon_tex.png');
+		var materialMoon = new THREE.MeshBasicMaterial({ map:textureMoon});
+		var geometryMoon = new THREE.SphereGeometry(0.5,0.3,0.3);
+		var meshMoon = new THREE.Mesh( geometryMoon, materialMoon );
 		//this.sceneCenter = new THREE.Scene();
 
 		//this.sceneCenter.position.set(0, 0.5, 0);
 		//this.sceneCenter.add(meshMoon);
-		//meshMoon.position.set(0, 0.5, 0);
+		this.meshMoon.position.set(0, 0.5, 0);
 		//arMarker.add(this.sceneCenter);
+		arMarker.add(this.meshMoon);
 	}
 
 	update(dt){
-		this.meshCloud.rotation.y += dt * 0.1
-		this.meshEarth.rotation.y += dt * 0.2
-		this.sceneCenter.rotation.y += dt * 0.5;
+		this.meshCloud.rotation.y += dt * 0.1;
+		this.meshEarth.rotation.y += dt * 0.2;
+		//this.sceneCenter.rotation.y += dt * 0.5;
+		this.meshMoon.rotation.y += dt * 0.5;
+
 	}
 }
 //-------------------------------------------------
