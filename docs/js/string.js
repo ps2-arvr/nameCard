@@ -1,4 +1,4 @@
-class String{
+class SelfString{
 	constructor(){
 	}
 	

@@ -60,8 +60,8 @@ class ARObject{
 		marker = new THREE.Group();
 
 		//パラメータから辞書データ名を取得
-		var string = new String();
-		var dictionaryName = string.getValue('marker_name');
+		var selfString = new SelfString();
+		var dictionaryName = selfString.getValue('marker_name');
 
 		if(dictionaryName == null){
 			alert('dictionaryName dose not exit');
@@ -70,9 +70,9 @@ class ARObject{
 
 		dictionaryData = "./data/" + dictionaryName + ".patt";
 
-		controls = new THREEx.ArMarkerControls(context, marker, {    // マーカを登録
-  			type: "pattern",					 // マーカのタイプ
-  			patternUrl: dictionaryData,				 // マーカファイル
+		controls = new THREEx.ArMarkerControls(context, marker, { 	// マーカを登録
+  			type: "pattern",					// マーカのタイプ
+  			patternUrl: dictionaryData				// マーカファイル
 		});
 
 		this.scene.add(marker);
