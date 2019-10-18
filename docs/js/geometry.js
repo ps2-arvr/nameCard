@@ -74,7 +74,7 @@ class Earth extends Geometry{
 		var materialEarth = new THREE.MeshBasicMaterial({ map:textureEarth });
 		var geometryEarth = new THREE.SphereGeometry(18,32,32);
 		this.meshEarth = new THREE.Mesh( geometryEarth, materialEarth );
-		this.meshEarth.position.set(0, 0, 50);
+		this.meshEarth.position.set(0, 0.5, 0);
 		arMarker.add(this.meshEarth);
 
 		this.meshCloud = new THREE.Mesh();
@@ -83,7 +83,7 @@ class Earth extends Geometry{
 		var materialCloud = new THREE.MeshBasicMaterial({ map:textureCloud, transparent:true });
 		var geometryCloud = new THREE.SphereGeometry(18.1,32,32);
 		this.meshCloud = new THREE.Mesh( geometryCloud, materialCloud );
-		this.meshCloud.position.set(0, 0, 50);
+		this.meshCloud.position.set(0, 0.5, 0);
 		arMarker.add(this.meshCloud);
 
 		var meshMoon = new THREE.Mesh();
@@ -94,9 +94,9 @@ class Earth extends Geometry{
 		var meshMoon = new THREE.Mesh( geometryMoon, materialMoon );
 		this.sceneCenter = new THREE.Scene();
 
-		this.sceneCenter.position.set(0, 0, 50);
+		this.sceneCenter.position.set(0, 0.5, 0);
 		this.sceneCenter.add(meshMoon);
-		meshMoon.position.set(0, 0, 50);
+		meshMoon.position.set(0, 0.5, 0);
 		arMarker.add(this.sceneCenter);
 	}
 
