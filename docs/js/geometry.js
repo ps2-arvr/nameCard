@@ -77,27 +77,27 @@ class Earth extends Geometry{
 		this.meshEarth.position.set(0, 0.5, 0);
 		arMarker.add(this.meshEarth);
 
-		this.meshCloud = new THREE.Mesh();
-		var loaderCloud = new THREE.TextureLoader();
-		var textureCloud = loaderCloud.load( './image/cloud_tex.png');
-		var materialCloud = new THREE.MeshBasicMaterial({ map:textureCloud, transparent:true });
-		var geometryCloud = new THREE.SphereGeometry(1.8.1.0,3.2,3.2);
-		this.meshCloud = new THREE.Mesh( geometryCloud, materialCloud );
-		this.meshCloud.position.set(0, 0.5, 0);
-		arMarker.add(this.meshCloud);
+		//this.meshCloud = new THREE.Mesh();
+		//var loaderCloud = new THREE.TextureLoader();
+		//var textureCloud = loaderCloud.load( './image/cloud_tex.png');
+		//var materialCloud = new THREE.MeshBasicMaterial({ map:textureCloud, transparent:true });
+		//var geometryCloud = new THREE.SphereGeometry(1.8.1.0,3.2,3.2);
+		//this.meshCloud = new THREE.Mesh( geometryCloud, materialCloud );
+		//this.meshCloud.position.set(0, 0.5, 0);
+		//arMarker.add(this.meshCloud);
 
-		var meshMoon = new THREE.Mesh();
-		var loaderMoon = new THREE.TextureLoader();
-		var textureMoon = loaderMoon.load( './image/moon_tex.png');
-		var materialMoon = new THREE.MeshBasicMaterial({ map:textureMoon});
-		var geometryMoon = new THREE.SphereGeometry(0.5,3.2,3.2);
-		var meshMoon = new THREE.Mesh( geometryMoon, materialMoon );
-		this.sceneCenter = new THREE.Scene();
+		//var meshMoon = new THREE.Mesh();
+		//var loaderMoon = new THREE.TextureLoader();
+		//var textureMoon = loaderMoon.load( './image/moon_tex.png');
+		//var materialMoon = new THREE.MeshBasicMaterial({ map:textureMoon});
+		//var geometryMoon = new THREE.SphereGeometry(0.5,3.2,3.2);
+		//var meshMoon = new THREE.Mesh( geometryMoon, materialMoon );
+		//this.sceneCenter = new THREE.Scene();
 
-		this.sceneCenter.position.set(0, 0.5, 0);
-		this.sceneCenter.add(meshMoon);
-		meshMoon.position.set(0, 0.5, 0);
-		arMarker.add(this.sceneCenter);
+		//this.sceneCenter.position.set(0, 0.5, 0);
+		//this.sceneCenter.add(meshMoon);
+		//meshMoon.position.set(0, 0.5, 0);
+		//arMarker.add(this.sceneCenter);
 	}
 
 	update(dt){
