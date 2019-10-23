@@ -72,7 +72,7 @@ class Earth extends Geometry{
 		var loaderEarth = new THREE.TextureLoader();
 		var textureEarth = loaderEarth.load( './image/earth_tex.png');
 		var materialEarth = new THREE.MeshBasicMaterial({ map:textureEarth });
-		var geometryEarth = new THREE.SphereGeometry(3.0,5.0,5.0);
+		var geometryEarth = new THREE.SphereGeometry(3.0,32.0,32.0);
 		this.meshEarth = new THREE.Mesh( geometryEarth, materialEarth );
 		this.meshEarth.position.set(0, 0.5, 0);
 		arMarker.add(this.meshEarth);
@@ -81,7 +81,7 @@ class Earth extends Geometry{
 		var loaderCloud = new THREE.TextureLoader();
 		var textureCloud = loaderCloud.load( './image/cloud_tex.png');
 		var materialCloud = new THREE.MeshBasicMaterial({ map:textureCloud, transparent:true });
-		var geometryCloud = new THREE.SphereGeometry(3.1,5.0,5.0);
+		var geometryCloud = new THREE.SphereGeometry(3.1,32.0,32.0);
 		this.meshCloud = new THREE.Mesh( geometryCloud, materialCloud );
 		this.meshCloud.position.set(0, 0.5, 0);
 		arMarker.add(this.meshCloud);
@@ -90,13 +90,13 @@ class Earth extends Geometry{
 		var loaderMoon = new THREE.TextureLoader();
 		var textureMoon = loaderMoon.load( './image/moon_tex.png');
 		var materialMoon = new THREE.MeshBasicMaterial({ map:textureMoon});
-		var geometryMoon = new THREE.SphereGeometry(1.0,5.0,5.0);
+		var geometryMoon = new THREE.SphereGeometry(1.0,32.0,32.0);
 		var meshMoon = new THREE.Mesh( geometryMoon, materialMoon );
 		//this.sceneCenter = new THREE.Scene();
 
 		//this.sceneCenter.position.set(0, 0.5, 0);
 		//this.sceneCenter.add(meshMoon);
-		this.meshMoon.position.set(0, 0.5, 0);
+		this.meshMoon.position.set(0, 0, 0.5);
 		//arMarker.add(this.sceneCenter);
 		arMarker.add(this.meshMoon);
 	}
