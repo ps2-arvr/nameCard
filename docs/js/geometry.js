@@ -54,7 +54,7 @@ class Rocket extends Geometry{
 			// メッシュの名前（後でピッキングで使う）
 			rocketMesh.name = "rocket";	
 			// 初期サイズ（現物合わせ）
-			rocketMesh.scale.set(0.3, 0.3, 0.3);
+			rocketMesh.scale.set(1.0,1.0,1.0);
 			// 初期位置（現物合わせ）
 			rocketMesh.position.set(0, 0.5, 0);
 			// メッシュをマーカに追加
