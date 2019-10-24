@@ -74,7 +74,7 @@ class Earth extends Geometry{
 		var materialEarth = new THREE.MeshBasicMaterial({ map:textureEarth });
 		var geometryEarth = new THREE.SphereGeometry(3.0,32.0,32.0);
 		this.meshEarth = new THREE.Mesh( geometryEarth, materialEarth );
-		this.meshEarth.position.set(-1.5, 0.5, 0);
+		this.meshEarth.position.set(-2.0, 0.5, 0);
 		arMarker.add(this.meshEarth);
 
 		this.meshCloud = new THREE.Mesh();
@@ -96,7 +96,7 @@ class Earth extends Geometry{
 
 		//this.sceneCenter.position.set(0, 0.5, 0);
 		//this.sceneCenter.add(meshMoon);
-		this.meshMoon.position.set(-1.5, 0, 2.0);
+		this.meshMoon.position.set(-2.0, 0, 2.0);
 		//arMarker.add(this.sceneCenter);
 		arMarker.add(this.meshMoon);
 	}
@@ -138,11 +138,11 @@ class Video extends Geometry{
 
 		//生成したvideo textureをmapに指定し、overdrawをtureにしてマテリアルを生成
 		var movieMaterial = new THREE.MeshBasicMaterial({map: this.videoTexture, overdraw: true, side:THREE.DoubleSide});
-		var movieGeometry = new THREE.BoxGeometry(5.0,0.05,3.0);
+		var movieGeometry = new THREE.BoxGeometry(5.5,0.05,5.5);
 		var movieScreen = new THREE.Mesh(movieGeometry, movieMaterial);
 
 		movieScreen.name = "plane";
-		movieScreen.position.set(-1.5, 0.5, 0);
+		movieScreen.position.set(-2.0 0.5, 0);
 		arMarker.add(movieScreen);
 	}
 
