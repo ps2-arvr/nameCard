@@ -56,7 +56,7 @@ class Rocket extends Geometry{
 			// 初期サイズ（現物合わせ）
 			rocketMesh.scale.set(2.0, 2.0, 2.0);
 			// 初期位置（現物合わせ）
-			rocketMesh.position.set(-1.5, 0.5, 0);
+			rocketMesh.position.set(-2.0, 0.5, 0);
 			// メッシュをマーカに追加
 			arMarker.add(rocketMesh);
 		});
@@ -83,7 +83,7 @@ class Earth extends Geometry{
 		var materialCloud = new THREE.MeshBasicMaterial({ map:textureCloud, transparent:true });
 		var geometryCloud = new THREE.SphereGeometry(3.1,32.0,32.0);
 		this.meshCloud = new THREE.Mesh( geometryCloud, materialCloud );
-		this.meshCloud.position.set(-1.5, 0.5, 0);
+		this.meshCloud.position.set(-2.0, 0.5, 0);
 		arMarker.add(this.meshCloud);
 
 		this.meshMoon = new THREE.Mesh();
@@ -142,7 +142,7 @@ class Video extends Geometry{
 		var movieScreen = new THREE.Mesh(movieGeometry, movieMaterial);
 
 		movieScreen.name = "plane";
-		movieScreen.position.set(-2.0 0.5, 0);
+		movieScreen.position.set(-2.0, 0.5, 0);
 		arMarker.add(movieScreen);
 	}
 
