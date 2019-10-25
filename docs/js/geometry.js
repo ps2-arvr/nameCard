@@ -48,7 +48,8 @@ class Rocket extends Geometry{
 		var loader = new THREE.JSONLoader();
 		// モデルを読み込む
 		loader.load("./model/rocketX.json", function(geo, mat) {
-			mat = new THREE.MeshPhongMaterial({map:THREE.ImageUtils.loadTexture("./model/rocketX.png"), transparent: true, opacity: 0.5});
+			//mat = new THREE.MeshPhongMaterial({map:THREE.ImageUtils.loadTexture("./model/rocketX.png"), transparent: true, opacity: 0.5});
+			mat = new THREE.MeshPhongMaterial({map:THREE.ImageUtils.loadTexture("./model/rocketX.png")});
 			// メッシュ化
 			rocketMesh = new THREE.Mesh(geo, mat);
 			// メッシュの名前（後でピッキングで使う）
@@ -71,8 +72,8 @@ class Earth extends Geometry{
 		this.meshEarth = new THREE.Mesh();
 		var loaderEarth = new THREE.TextureLoader();
 		var textureEarth = loaderEarth.load( './image/earth_tex.png');
-		//var materialEarth = new THREE.MeshBasicMaterial({ map:textureEarth });
-		var materialEarth = new THREE.MeshBasicMaterial({ map:textureEarth, transparent: true, opacity: 0.5});
+		var materialEarth = new THREE.MeshBasicMaterial({ map:textureEarth });
+		//var materialEarth = new THREE.MeshBasicMaterial({ map:textureEarth, transparent: true, opacity: 0.5});
 		var geometryEarth = new THREE.SphereGeometry(3.0,32.0,32.0);
 		this.meshEarth = new THREE.Mesh( geometryEarth, materialEarth );
 		this.meshEarth.position.set(-2.0, 0.5, 0);
@@ -138,8 +139,8 @@ class Video extends Geometry{
 		this.videoTexture.magFilter = THREE.LinearFilter;
 
 		//生成したvideo textureをmapに指定し、overdrawをtureにしてマテリアルを生成
-		//var movieMaterial = new THREE.MeshBasicMaterial({map: this.videoTexture, overdraw: true, side:THREE.DoubleSide});
-		var movieMaterial = new THREE.MeshBasicMaterial({color: 0xFF0000, transparent: true, opacity: 0.5});
+		var movieMaterial = new THREE.MeshBasicMaterial({map: this.videoTexture, overdraw: true, side:THREE.DoubleSide});
+		//var movieMaterial = new THREE.MeshBasicMaterial({color: 0xFF0000, transparent: true, opacity: 0.5});
 		var movieGeometry = new THREE.BoxGeometry(5.5,0.05,5.5);
 		var movieScreen = new THREE.Mesh(movieGeometry, movieMaterial);
 
